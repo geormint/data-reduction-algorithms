@@ -2,7 +2,6 @@ import pandas as pd
 import time
 import os
 from scipy.spatial import distance
-import Menu
 
 def dists(testRow, trainRow):
         f_row = []
