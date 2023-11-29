@@ -34,8 +34,7 @@ def getNeighbors(train, loops, numNeighbors):
 		dist = dists(testRow, trainRow)
 		distances.append((trainRow, dist))
 	distances.sort(key = lambda tup: tup[1])
-	for i in range(numNeighbors):
-		majorClass.append(distances[i][0][-1])
+	reduce = [majorClass.append(distances[i][0][-1]) for i in range(numNeighbors)]
 		#print(distances[[i][0]])
 	maxClass = max(majorClass, key = majorClass.count)
 	if maxClass != testRow[-1]:
