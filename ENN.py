@@ -4,7 +4,6 @@ import os
 from scipy.spatial import distance
 
 def dists(testRow, trainRow):
-        f_row = []
 	f_row = [float(val) if not isinstance(val, int) else val for val in testRow[:-1]]
 	s_row = [float(val) if not isinstance(val, int) else val for val in trainRow[:-1]]
 	
