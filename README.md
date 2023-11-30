@@ -36,7 +36,7 @@ $d(p,q) = d(q,p) = max(\rvert q_{1}-p_{1} \lvert + \rvert q_{2}-p_{2} \lvert  + 
 
 ## Algorithms
 
-#### Edited Nearest Neighbor
+#### Edited Nearest Neighbors
 
 The quality of the training data is enhanced through the utilization of processing algorithms, which eliminate outliers, noise, and mislabeled objects. Additionally, these algorithms work towards smoothing the decision boundaries between various classes. The ultimate goal of the processing technique is to generate a training set that exhibits no overlap between classes. 
 
@@ -55,6 +55,8 @@ Output: ES
 8: end for
 9: return ES
 ```
+
+#### Condensed Nearest Neighbors
 
 The Condensed Nearest Neighbor (CNN) rule is the most ancient and widely used algorithm for condensation. The CNN rule constructs its condensation set based on a simple idea. Elements that are located in the "inner" data area of a class, which means away from the bounds class decision, are not useful during the classification process. Therefore, they can be eliminated without any loss of accuracy. The CNN rule adopts this idea and attempts to place only those objects in the compaction set that are in the data regions near the decision boundaries between the different classes. These specific items are the only necessary objects for the classification process.
 
