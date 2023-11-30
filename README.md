@@ -45,13 +45,13 @@ The ENN rule, which is the standard editing algorithm, serves as the foundation 
 <code>
 Input: TS, k
 Output: ES
-1: ES ← TS
-2: for each x ∈ TS do
-3: NNs ← find the k nearest to x neighbors in TS − {x}
-4: majorClass ← find the most common class of NNs
-5: if xclass ̸ = majorClass then
-6: ES ← ES − {x}
-7: end if
-8: end for
-9: return ES
+	1: ES ← TS
+	2: for each x ∈ TS do
+	3: 	NNs ← find the k nearest to x neighbors in TS − {x}
+	4: 	majorClass ← find the most common class of NNs
+	5: 	if xclass ̸ = majorClass then
+	6: 		ES ← ES − {x}
+	7: 	end if
+	8: end for
+	9: return ES
 </code>
