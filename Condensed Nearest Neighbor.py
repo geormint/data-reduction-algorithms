@@ -120,15 +120,15 @@ for folder in paths:
 		condensedFile.close()
 
 		rate = (1 - (condensedCount / trainCount)) * 100.0
-		resultsFile.write("\n\n\n\n" + "Results of file " + str(fileCount))
-		resultsFile.write("\nTime seconds: " + str(toc - tic))
-		resultsFile.write("\nTraining set: " + str(trainCount) + "\tCondensed set: " + str(condensedCount))
-		resultsFile.write("\nPercentage difference: " + str(rate))
+	results_file.write(
+            f"\n\n\n\nResults of file {file_count}"
+            f"\nTime seconds: {toc - tic}"
+            f"\nTraining set: {trainCount}\tEdited set: {editedCount}"
+            f"\nPercentage difference: {rate}"
+        )
 
-		reductionRate += rate
-		stop = True
+        reductionRate += rate
 
-	r_rate = reductionRate / 5
-	resultsFile.write("\n\n\n Reduction rate: " + str(r_rate))
-        
-	resultsFile.close()
+    r_rate = reductionRate / 5
+    results_file.write(f"\n\n\nReduction rate: {r_rate}")
+    results_file.close()
