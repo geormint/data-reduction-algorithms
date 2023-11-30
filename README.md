@@ -8,10 +8,28 @@ Unlike other classifiers, the k-NN algorithm does not generate classification mo
 
 ##Distance Metrics
 
-The distance metrics used for the purpose of these thesis are as follow:
+Distance metrics are used in both the supervised (categorization) and unsupervised learning (clustering) to measure similarity between data points. The distance metrics used for the purpose of this thesis are as follow:
 
 ##### Euclidean
 
 The length of a line segment connecting two points in Euclidean space is referred to as the Euclidean distance.
 
-$[d(p,q) = d(q,p) = \sqrt{(q_{1}-p_{1})^{2} + (q_{2}-p_{2})^{2} + \ldots + (q_{n}-p_{n})^{2}} = \sqrt{\sum\limits_{i=1}^n (q_{i}-p_{i})^{2}}$
+$d(p,q) = d(q,p) = \sqrt{(q_{1}-p_{1})^{2} + (q_{2}-p_{2})^{2} + \ldots + (q_{n}-p_{n})^{2}} = \sqrt{\sum\limits_{i=1}^n (q_{i}-p_{i})^{2}}$
+
+##### Manhattan
+
+The total length of the projections of the line segment onto the coordinate axes is equivalent to the length of the line segment itself. In simpler terms, it is the sum of the absolute disparities between the measurement values in all dimensions of the two points.
+
+$d(p,q) = d(q,p) = \rvert q_{1}-p_{1} \lvert + \rvert q_{2}-p_{2} \lvert + \ldots + \rvert q_{n}-p_{n} \lvert = \sum\limits_{i=1}^n \rvert q_{i}-p_{i} \lvert$
+
+##### Minkowski
+
+The Minkowski distance is a metric on a vector-shaped vector that can be thought of as a generalization of both the Euclidean distance and the Manhattan distance.
+
+$d(p,q) = d(q,p) = (\rvert q_{1}-p_{1} \lvert ^{p})^{1/p}+ (\rvert q_{2}-p_{2} \lvert ^{p})^{1/p} + \ldots + (\rvert q_{n}-p_{n} \lvert ^{p})^{1/p} = \sum\limits_{i=1}^n (\lvert x - y \rvert ^p)^{1/p}$
+
+##### Chebyshev
+
+Chebyshev distance, maximal measure or L∞ measure is a measure defined on a vector space where the distance between two vectors is the largest of their differences in any coordinate dimension
+
+$d(p,q) = d(q,p) = max(\rvert q_{1}-p_{1} \lvert + \rvert q_{2}-p_{2} \lvert  + \ldots + \rvert q_{n}-p_{n} \lvert) = \sum\limits_{i=1}^n max \lvert q - p \rvert$
