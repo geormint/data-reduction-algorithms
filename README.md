@@ -1,7 +1,17 @@
 # Study of the effect of metric distance in data reduction techniques for the K nearest neighbors classifier
 
-This is my thesis for my bachelor degree in Computer Science with title <code>Study of the effect of metric distance in data reduction techniques for the K nearest neighbors classifier</code>.
+### Introduction
 
-Python was used throughout the whole project. 
+The k-Nearest Neighbors (k-NN) algorithm is a widely used and efficient lazy classification method. It is a user-friendly classifier that finds applications in various fields.
 
-I used Python for the development of the algorithms. I tested different distance metrics to find which one offers the most reduction percentage across multiple datasets that I found on the <a href="https://sci2s.ugr.es/keel/datasets.php">KEEL</a> respository. I implemented two algorithms, the <code>Edited Nearest Neighbor</code> and the <code>Condensed Nearest Neighbor</code>. After I got the new datasets from these two algorithms I run the K-Nearest Neighobor on them to see which distance metric and algorithm has the best accuracy.
+Unlike other classifiers, the k-NN algorithm does not generate classification models. Instead, it relies on the training data whenever a new object needs to be categorized. To classify an object x, the algorithm examines the available training data and identifies the k objects (neighbors) that are closest to x based on a distance metric. The object x is then assigned to the most common class among the classes of its k nearest neighbors. This class, also known as the parent class, is determined through a process called nearest neighbor voting.
+
+##Distance Metrics
+
+The distance metrics used for the purpose of these thesis are as follow:
+
+##### Euclidean
+
+The length of a line segment connecting two points in Euclidean space is referred to as the Euclidean distance.
+
+$[d(p,q) = d(q,p) = \sqrt{(q_{1}-p_{1})^{2} + (q_{2}-p_{2})^{2} + \ldots + (q_{n}-p_{n})^{2}} = \sqrt{\sum\limits_{i=1}^n (q_{i}-p_{i})^{2}}$
