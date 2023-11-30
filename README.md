@@ -49,9 +49,33 @@ Output: ES
 2: for each x ∈ TS do
 3: 	NNs ← find the k nearest to x neighbors in TS − {x}
 4: 	majorClass ← find the most common class of NNs
-5: 	if x<sub>class</sub> ̸ = majorClass then
+5: 	if xclass ̸ = majorClass then
 6: 		ES ← ES − {x}
 7: 	end if
 8: end for
 9: return ES
+```
+
+The Condensed Nearest Neighbor (CNN) rule is the most ancient and widely used algorithm for condensation. The CNN rule constructs its condensation set based on a simple idea. Elements that are located in the "inner" data area of a class, which means away from the bounds class decision, are not useful during the classification process. Therefore, they can be eliminated without any loss of accuracy. The CNN rule adopts this idea and attempts to place only those objects in the compaction set that are in the data regions near the decision boundaries between the different classes. These specific items are the only necessary objects for the classification process.
+
+The CNN rule starts by moving an element of the original training dataset (TS) to the compression set (CS). Then, the 1-NN rule is applied by the CNN rule, and the objects of the TS are categorized by scanning the elements of the CS. If an object is miscategorized, it moves from TS to CS. The algorithm continues until there are no moves from the TS to the CS during a complete traversal of the TS. This ensures that the content of TS is correctly categorized by the content of CS. The remaining content of the TS is deleted.
+
+```
+Input: TS
+Output: CS
+1: CS ← 0
+2: pick an item of TS and move it to CS
+3: repeat
+4: 	stop ← TRUE
+5: 	for each x ∈ TS do
+6: 		NN ← Nearest Neighbour of x neighbors in CS
+7: 		if NNclass ̸ = xclass then
+8: 			CS ← CS ∪ {x}
+9: 			TS ← TS − {x}
+10: 			stop ← FALSE
+11: 		end if
+12: 	end for
+13: until stop == TRUE no move during a pass of TS
+14: discard TS
+15: return CS
 ```
