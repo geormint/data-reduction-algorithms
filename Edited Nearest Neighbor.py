@@ -46,8 +46,6 @@ calculation = int(input(f"Which distance you want to calculate - {', '.join([f'{
 parameter = None
 if calculation == 3:
     parameter = int(input("Choose parameter for Minkowski - 3 or 4: "))
-else:
-    exit()
 
 paths = [dirs for dirs in os.listdir() if dirs != os.path.basename(__file__)]
     
@@ -55,42 +53,37 @@ for folder in paths:
     reductionRate = 0
     base_dir = folder
     directory = os.listdir(base_dir)
-    results_file = open(f"{folder}-resultsENN.txt", "w")
     
     for file_count, files in enumerate(directory, start=1):
         path = os.path.join(base_dir, files)
         dataset = pd.read_csv(path, sep='\t', header=None, dtype=str)
 
-        trainSet = dataset.values.tolist()
-        editedSet = dataset.values.tolist()
-
-        edited_file = open(f"{folder}-tr{file_count}.txt", "w")
-
-        trainCount = 0
-        editedCount = 0
-
+        data_values = dataset.values.tolist()
+        trainSet = data_values[:]
+        editedSet = data_values[:]
+   
         tic = time.perf_counter()
         for line, _ in enumerate(trainSet):
             editedSet = getNeighbors(trainSet, line, k)
         toc = time.perf_counter()
 
-        for element in editedSet:
-            edited_file.write('\t'.join(map(str, element)) + '\n')
-            editedCount += 1
+        with open(f"{folder}-tr{file_count}.txt", "w") as edited_file:
+            for element in editedSet:
+                edited_file.write('\t'.join(map(str, element)) + '\n')
 
-        edited_file.close()
+        rate = (1 - (len(editedSet) / line)) * 100.0
 
-        rate = (1 - (editedCount / line)) * 100.0
-
-        results_file.write(
-            f"\n\n\n\nResults of file {file_count}"
-            f"\nTime seconds: {toc - tic}"
-            f"\nTraining set: {trainCount}\tEdited set: {editedCount}"
-            f"\nPercentage difference: {rate}"
-        )
+        with open(f"{folder}-resultsCNN.txt", "a") as results_file:
+            results_file.write(
+                f"\n\n\n\nResults of file {file_count}"
+                f"\nTime seconds: {toc - tic}"
+                f"\nTraining set: {len(trainSet)}\tEdited set: {len(editedSet)}"
+                f"\nPercentage difference: {rate}"
+            )
 
         reductionRate += rate
 
     r_rate = reductionRate / 5
-    results_file.write(f"\n\n\nReduction rate: {r_rate}")
-    results_file.close()
+
+    with open(f"{folder}-resultsCNN.txt", "a") as results_file:
+        results_file.write(f"\n\n\nReduction rate: {r_rate}")
