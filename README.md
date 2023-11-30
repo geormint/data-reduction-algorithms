@@ -10,26 +10,54 @@ Unlike other classifiers, the k-NN algorithm does not generate classification mo
 
 Distance metrics are used in both the supervised (categorization) and unsupervised learning (clustering) to measure similarity between data points. The distance metrics used for the purpose of this thesis are as follow:
 
-##### Euclidean
+#### Euclidean
 
 The length of a line segment connecting two points in Euclidean space is referred to as the Euclidean distance.
 
 $d(p,q) = d(q,p) = \sqrt{(q_{1}-p_{1})^{2} + (q_{2}-p_{2})^{2} + \ldots + (q_{n}-p_{n})^{2}} = \sqrt{\sum\limits_{i=1}^n (q_{i}-p_{i})^{2}}$
 
-##### Manhattan
+#### Manhattan
 
 The total length of the projections of the line segment onto the coordinate axes is equivalent to the length of the line segment itself. In simpler terms, it is the sum of the absolute disparities between the measurement values in all dimensions of the two points.
 
 $d(p,q) = d(q,p) = \rvert q_{1}-p_{1} \lvert + \rvert q_{2}-p_{2} \lvert + \ldots + \rvert q_{n}-p_{n} \lvert = \sum\limits_{i=1}^n \rvert q_{i}-p_{i} \lvert$
 
-##### Minkowski
+#### Minkowski
 
 The Minkowski distance is a metric on a vector-shaped vector that can be thought of as a generalization of both the Euclidean distance and the Manhattan distance.
 
 $d(p,q) = d(q,p) = (\rvert q_{1}-p_{1} \lvert ^{p})^{1/p}+ (\rvert q_{2}-p_{2} \lvert ^{p})^{1/p} + \ldots + (\rvert q_{n}-p_{n} \lvert ^{p})^{1/p} = \sum\limits_{i=1}^n (\lvert x - y \rvert ^p)^{1/p}$
 
-##### Chebyshev
+#### Chebyshev
 
 Chebyshev distance, maximal measure or L∞ measure is a measure defined on a vector space where the distance between two vectors is the largest of their differences in any coordinate dimension
 
 $d(p,q) = d(q,p) = max(\rvert q_{1}-p_{1} \lvert + \rvert q_{2}-p_{2} \lvert  + \ldots + \rvert q_{n}-p_{n} \lvert) = \sum\limits_{i=1}^n max \lvert q - p \rvert$
+
+## Algorithms
+
+#### Edited Nearest Neighbor
+
+The quality of the training data is enhanced through the utilization of processing algorithms, which eliminate outliers, noise, and mislabeled objects. Additionally, these algorithms work towards smoothing the decision boundaries between various classes. The ultimate goal of the processing technique is to generate a training set that exhibits no overlap between classes. 
+
+The ENN rule, which is the standard editing algorithm, serves as the foundation for all other processing algorithms. It is a straightforward rule to comprehend. Initially, the training dataset (TS) is set to be the same as the processed set (ES). The method then searches the TS and identifies the k nearest neighbors for each element x in the TS. If the majority of these nearest neighbors determine that x is misclassified, it is eliminated from the ES. In simpler terms, if the majority of the k nearest neighbors have a different class than x, then x is considered either noise or a point near the decision boundary between classes, and it is removed from the ES.
+
+$
+\begin{algorithm}[h]
+\textbf{Input:} $TS, k$\\
+\textbf{Output:} $ES$
+\caption{ENN-κανόνας}
+\label{ENNalgo}
+\begin{algorithmic}[1]
+   \STATE $ES \leftarrow TS$
+   \FOR{each $x \in TS$}
+	         \STATE $NNs \leftarrow$ find the $k$ nearest to $x$ neighbors in $TS - \{x\}$
+	         \STATE $majorClass \leftarrow $ find the most common class of $NNs$
+             \IF{$ x_{class} \neq majorClass$}
+                \STATE $ES \leftarrow ES - \{x\}$
+             \ENDIF
+   \ENDFOR          
+   \RETURN $ES$
+\end{algorithmic}
+\end{algorithm}
+$
