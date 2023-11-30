@@ -22,16 +22,12 @@ def dists(testRow, trainRow):
     return dist
 
 def getNeighbors(trainSet, value):
-	distances = []
-	testRow = trainSet[value]
-	for trainRow in condensedSet:
-		dist = dists(testRow, trainRow)
-		distances.append((trainRow, dist))
-	distances.sort(key = lambda tup: tup[1])
-	if distances[0][0][-1] != testRow[-1]:
-		#print(distances[0][0])
-		condensedSet.append(testRow)
-	return distances, condensedSet
+    testRow = train[loops]
+    distances = [(trainRow, dists(testRow, trainRow)) for trainRow in train if trainRow != testRow]
+    distances.sort(key = lambda tup: tup[1]
+    if distances[0][0][-1] != testRow[-1]:
+	condensedSet.append(testRow)
+    return distances, condensedSet
 
 paths = []
 condensedSet = []
