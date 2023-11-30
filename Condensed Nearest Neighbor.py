@@ -64,7 +64,7 @@ for folder in paths:
 		condensedSet.clear() 
 
 		fileCount += 1
-		condensedFile = open(f"{folder} + '-tr' + {fileCount}, 'w'")
+		condensedFile = open(f"{folder} + '-tr' + {fileCount}", 'w')
 		
 		trainCount = 0
 		
