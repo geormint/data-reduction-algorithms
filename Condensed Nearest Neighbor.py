@@ -50,21 +50,21 @@ else:
 paths = [dirs for dirs in os.listdir() if dirs != os.path.basename(__file__)]
 
 for folder in paths:
-	stop = True
-	reductionRate = 0
-	fileCount = 0
-	base_dir = folder
-	directory = os.listdir(base_dir)
-	resultsFile = open(folder + "-resultsCNN.txt", "w")
-	for files in directory:
-		path = os.path.join(base_dir, files)
-		dataset = pd.read_csv(path, sep='\t', header = None, dtype = str)	
-		
-		trainSet = dataset.values.tolist()
-		condensedSet.clear()
+    stop = True
+    reductionRate = 0
+    base_dir = folder
+    directory = os.listdir(base_dir)
+    results_file = open(f"{folder}-resultsENN.txt", "w")
+    
+    for file_count, files in enumerate(directory, start=1):
+        path = os.path.join(base_dir, files)
+        dataset = pd.read_csv(path, sep='\t', header=None, dtype=str)
+
+        trainSet = dataset.values.tolist()	
+		condensedSet.clear() 
 
 		fileCount += 1
-		condensedFile = open(folder + '-tr' + str(fileCount), 'w')
+		condensedFile = open(f"{folder} + '-tr' + {fileCount}, 'w'")
 		
 		trainCount = 0
 		
@@ -129,6 +129,6 @@ for folder in paths:
 
         reductionRate += rate
 
-    r_rate = reductionRate / 5
-    results_file.write(f"\n\n\nReduction rate: {r_rate}")
-    results_file.close()
+r_rate = reductionRate / 5
+results_file.write(f"\n\n\nReduction rate: {r_rate}")
+results_file.close()
