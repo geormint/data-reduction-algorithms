@@ -13,13 +13,12 @@ test_timer = 0.0
 
 paths = []
 
-for dirs in os.listdir():
-    if dirs == os.path.basename(__file__):
-        continue
-    paths.append(dirs)
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+paths = [d for d in os.listdir(current_dir) if os.path.isdir(os.path.join(current_dir, d)) and d != os.path.basename(__file__)]
 
 for path in paths:
-    print(path)
     filebase1 = path + '-'
     for ifile in range(5):
         train_filename = '{}/{}tr{}{}'.format(path, filebase1, ifile + 1, extension)
