@@ -11,10 +11,6 @@ mean_acc_test = 0.0
 train_timer = 0.0
 test_timer = 0.0
 
-paths = []
-
-import os
-
 current_dir = os.path.dirname(os.path.abspath(__file__))
 paths = [d for d in os.listdir(current_dir) if os.path.isdir(os.path.join(current_dir, d)) and d != os.path.basename(__file__)]
 
@@ -44,8 +40,8 @@ for path in paths:
         acc_tree_test = np.sum(ytest == ttest) / len(ttest)
         mean_acc_test += acc_tree_test
 
-        print('DT: Test file {} : Test accuracy={}'.format(ifile + 1, acc_tree_test))
+        print(f'DT: Test file {ifile + 1} : Test accuracy={acc_tree_test}')
 
-    print('\nMean train time = {}'.format(train_timer / 5))
-    print('Mean test time = {}'.format(test_timer / 5))
-    print('Mean Test Accuracy  = {}'.format(mean_acc_test / 5))
+    print(f'\nMean train time = {train_timer / 5}')
+    print(f'Mean test time = {test_timer / 5}')
+    print('Mean Test Accuracy  = {mean_acc_test / 5}')
