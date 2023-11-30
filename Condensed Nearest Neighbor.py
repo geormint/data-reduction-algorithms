@@ -5,25 +5,21 @@ import random
 import time
 
 def dists(testRow, trainRow):
-        f_row = []
-        s_row = []
-        for num1 in range(len(testRow) - 1):
-                if testRow[num1] is not int:
-                        conversion = float(testRow[num1])
-                        f_row.append(conversion)
-        for num2 in range(len(trainRow) - 1):
-                if trainRow[num2] is not int:
-                        conversion = float(trainRow[num2])
-                        s_row.append(conversion)
-        if calculation == 1:
-                dist = distance.euclidean(f_row, s_row)
-        if calculation == 2:
-                dist = distance.cityblock(f_row, s_row)
-        if calculation == 3:
-                dist = distance.minkowski(f_row, s_row, parameter)
-        if calculation == 4:
-                dist = distance.chebyshev(f_row, s_row)
-        return dist
+    f_row = [float(val) if not isinstance(val, int) else val for val in testRow[:-1]]
+    s_row = [float(val) if not isinstance(val, int) else val for val in trainRow[:-1]]
+    
+    distance_functions = {
+        1: distance.euclidean,
+        2: distance.cityblock,
+        3: lambda f_row, s_row: distance.minkowski(f_row, s_row, parameter),
+        4: distance.chebyshev
+    }
+
+    if calculation in distance_functions:
+        dist = distance_functions[calculation](f_row, s_row)
+    else:
+        print("No valid option")
+    return dist
 
 def getNeighbors(trainSet, value):
 	distances = []
