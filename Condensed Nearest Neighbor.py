@@ -32,18 +32,22 @@ def getNeighbors(trainSet, value):
 paths = []
 condensedSet = []
 
-calculation = int(input("Which distance you want to calculate - 1 for Euclidean\n"
-                     "\t\t\t\t     - 2 for Manhattan\n"
-                     "\t\t\t\t     - 3 for Minkowski\n"
-                     "\t\t\t\t     - 4 for Chebyshev\n"
-                     "\t\t\t\t     : "))
-if calculation == 3:
-        parameter = int(input("Choose parameter for Minkowski - 3 or 4: "))
+calculations = {
+    1: "Euclidean",
+    2: "Manhattan",
+    3: "Minkowski",
+    4: "Chebyshev"
+}
 
-for dirs in os.listdir():
-    if dirs == os.path.basename(__file__):
-        continue
-    paths.append(dirs)
+calculation = int(input(f"Which distance you want to calculate - {', '.join([f'{key} for {value}' for key, value in calculations.items()])}: "))
+
+parameter = None
+if calculation == 3:
+    parameter = int(input("Choose parameter for Minkowski - 3 or 4: "))
+else:
+    exit()
+
+paths = [dirs for dirs in os.listdir() if dirs != os.path.basename(__file__)]
 
 for folder in paths:
 	stop = True
