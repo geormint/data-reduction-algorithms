@@ -42,7 +42,7 @@ The quality of the training data is enhanced through the utilization of processi
 
 The ENN rule, which is the standard editing algorithm, serves as the foundation for all other processing algorithms. It is a straightforward rule to comprehend. Initially, the training dataset (TS) is set to be the same as the processed set (ES). The method then searches the TS and identifies the k nearest neighbors for each element x in the TS. If the majority of these nearest neighbors determine that x is misclassified, it is eliminated from the ES. In simpler terms, if the majority of the k nearest neighbors have a different class than x, then x is considered either noise or a point near the decision boundary between classes, and it is removed from the ES.
 
-<code>
+```
 Input: TS, k
 Output: ES
 	1: ES ← TS
@@ -54,4 +54,4 @@ Output: ES
 	7: 	end if
 	8: end for
 	9: return ES
-</code>
+```
