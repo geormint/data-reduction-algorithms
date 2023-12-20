@@ -72,10 +72,8 @@ for folder in paths:
             toc = time.perf_counter()
             
             train_set = [value for value in train_set if value not in condensed_set]
-
-            current_data = len(train_set)
         
-            if previous_data == current_data:
+            if previous_data == len(train_set):
                 break
 
         with open(f"{folder}-tr{file_count}.txt", "w") as condensed_file:
